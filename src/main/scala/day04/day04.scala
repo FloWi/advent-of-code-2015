@@ -15,10 +15,12 @@ object part1 extends LazyLogging {
       .toList
 
     logger.info("starting search for correct md5-hash")
-    val solution = solve(input.head, "00000")
+    val solution = solveNonPar(input.head, "00000")
 
     //runtime: 4.3s with lazyList
     //runtime: 2.15s with lazyList but only first 3 bytes
+    //runtime: 1.8s with lazyList flatMap but only first 3 bytes
+    //runtime: 0:10min with scala parallel lazyList but only first 3 bytes
     logger.info(s"Solution for ${getCallingMainClass.getCanonicalName}: $solution")
   }
 
@@ -38,6 +40,8 @@ object part2 extends LazyLogging {
 
     //runtime: 1:35min with scala lazyList
     //runtime: 0:23min with scala lazyList but only first 3 bytes
+    //runtime: 0:21min with scala lazyList flatMap but only first 3 bytes
+    //runtime: 0:07min with scala parallel lazyList but only first 3 bytes
     logger.info(
       s"Solution for ${getCallingMainClass.getCanonicalName}: $solution"
     )
@@ -52,12 +56,27 @@ object Day04 {
     val numberOfBytesToCheck = math.ceil(md5BeginningToMatch.length.toDouble / 2).toInt //two chars per bytes in hex encoding
     LazyList
       .range(0, 10 * 1000 * 1000)
-      .find { i =>
+      .par
+      .flatMap { i =>
         val stringToHash = s"$secretKey$i"
         val md5Hash = MessageDigest.getInstance("MD5").digest(stringToHash.getBytes).take(numberOfBytesToCheck).map("%02X".format(_)).mkString
-        md5Hash.startsWith(md5BeginningToMatch)
+        if (md5Hash.startsWith(md5BeginningToMatch)) List(i) else List.empty
       }
-      .get
+      .take(1)
+      .head
+  }
+
+  def solveNonPar(secretKey: String, md5BeginningToMatch: String): Int = {
+    val numberOfBytesToCheck = math.ceil(md5BeginningToMatch.length.toDouble / 2).toInt //two chars per bytes in hex encoding
+    LazyList
+      .range(0, 10 * 1000 * 1000)
+      .flatMap { i =>
+        val stringToHash = s"$secretKey$i"
+        val md5Hash = MessageDigest.getInstance("MD5").digest(stringToHash.getBytes).take(numberOfBytesToCheck).map("%02X".format(_)).mkString
+        if (md5Hash.startsWith(md5BeginningToMatch)) List(i) else List.empty
+      }
+      .take(1)
+      .head
   }
 
 }
