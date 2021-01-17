@@ -73,11 +73,27 @@ object part2 {
       .filterNot(_.isEmpty())
       .toList
 
-    val solution = ???
+    val solution = solve(input)
 
     println(
       s"Solution for ${getCallingMainClass.getCanonicalName}: $solution"
     )
+  }
+
+  def solve(input: List[String]): Int = {
+
+    val encoded = input.map { line =>
+      val escaped = line
+        .replace("\\", "\\\\")
+        .replace("\"", "\"\"")
+
+      "\"" + escaped + "\""
+    }
+
+    val inputSum = input.map(_.length).sum
+    val encodedSum = encoded.map(_.length).sum
+
+    encodedSum - inputSum
   }
 }
 

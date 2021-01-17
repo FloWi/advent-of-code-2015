@@ -50,6 +50,28 @@ class Day08Part1Test extends AnyFunSuite with Matchers {
 
 class Day08Part2Test extends AnyFunSuite with Matchers {
 
-  test("example 1") {}
+  val input = source(Some("src/test/resources/day08-example.txt"))
+    .getLines()
+    .filterNot(_.isEmpty())
+    .toList
+
+  test("example") {
+    part2.solve(input) shouldBe 42 - 23
+  }
+
+  test("example 1") {
+    part2.solve(input.take(1)) shouldBe 6 - 2
+  }
+  test("example 2") {
+    part2.solve(input.slice(1, 2)) shouldBe 9 - 5
+  }
+
+  test("example 3") {
+    part2.solve(input.slice(2, 3)) shouldBe 16 - 10
+  }
+
+  test("example 4") {
+    part2.solve(input.slice(3, 4)) shouldBe 11 - 6
+  }
 
 }
