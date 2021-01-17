@@ -1,5 +1,5 @@
 package day07
-import day07.Day07.{createCircuit, runCircuit}
+import day07.Day07.{ProvideValue, createCircuit, runCircuit}
 import helper.Helper._
 
 object part1 {
@@ -34,12 +34,26 @@ object part2 {
       .filterNot(_.isEmpty())
       .toList
 
-    val solution = ???
+    val solution = solve(input)
 
     println(
       s"Solution for ${getCallingMainClass.getCanonicalName}: $solution"
     )
   }
+
+  def solve(lines: List[String]): UShort = {
+
+    val circuit = createCircuit(lines)
+    val resultFromPart1 = runCircuit(circuit)("a")
+
+    val updatedCircuit = circuit.updated("b", ProvideValue("b", resultFromPart1))
+    val result = runCircuit(updatedCircuit)
+
+    result("a")
+  }
+
+  //1674 -> b
+
 }
 
 object Day07 {
