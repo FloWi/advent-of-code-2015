@@ -1,6 +1,5 @@
 package day05
 
-import day05._
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
@@ -16,17 +15,27 @@ class Day05Part1Test extends AnyFunSuite with Matchers {
     dvszwmarrgswjxmb is naughty because it contains only one vowel.
      */
 
-    Day05.isNiceString("ugknbfddgicrmopn") shouldBe true
-    Day05.isNiceString("aaa") shouldBe true
-    Day05.isNiceString("jchzalrnumimnmhp") shouldBe false
-    Day05.isNiceString("haegwjzuvuyypxyu") shouldBe false
-    Day05.isNiceString("dvszwmarrgswjxmb") shouldBe false
+    part1.isNiceString("ugknbfddgicrmopn") shouldBe true
+    part1.isNiceString("aaa") shouldBe true
+    part1.isNiceString("jchzalrnumimnmhp") shouldBe false
+    part1.isNiceString("haegwjzuvuyypxyu") shouldBe false
+    part1.isNiceString("dvszwmarrgswjxmb") shouldBe false
   }
 
 }
 
 class Day05Part2Test extends AnyFunSuite with Matchers {
 
-  test("example 1") {}
+  test("find indexes of pattern") {
+    part2.findIndexesOfPattern("xyxy", "xy") shouldBe List(0, 2)
+  }
+
+  test("example 1") {
+    part2.isNiceString("qjhvhtzxzqqjkmpb") shouldBe true
+    part2.isNiceString("xxyxx") shouldBe true
+    part2.isNiceString("uurcxstgmygtbstg") shouldBe false
+    part2.isNiceString("ieodomkazucvgmuy") shouldBe false
+
+  }
 
 }
