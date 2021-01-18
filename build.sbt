@@ -16,10 +16,14 @@ lazy val root = project
     //   "3.1"
     // ),
     scalaVersion := "2.13.4",
-    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.3" % Test,
-    libraryDependencies += "com.lihaoyi" %% "fastparse" % "2.2.2",
-    libraryDependencies += "org.typelevel" %% "cats-parse" % "0.2.0",
-    libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
-    libraryDependencies += "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.0"
+    libraryDependencies ++= Seq(
+      "org.scalatest" %% "scalatest" % "3.2.3" % Test,
+      "com.lihaoyi" %% "fastparse" % "2.2.2",
+      "org.typelevel" %% "cats-parse" % "0.2.0",
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
+      "ch.qos.logback" % "logback-classic" % "1.2.3",
+      "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.0",
+      "io.circe" %% "circe-core" % "0.12.3",
+      "io.circe" %% "circe-parser" % "0.12.3"
+    )
   )
