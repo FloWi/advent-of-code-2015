@@ -29,7 +29,17 @@ object part2 extends LazyLogging {
   //13:06:30.602 [main] DEBUG day10.Day10$ - played round #40. Result length: 492982
   //13:07:24.612 [main] DEBUG day10.Day10$ - played round #50. Result length: 6989950
 
+  //13:09:34.972 [main] DEBUG day10.Day10$ - played round #49. Result length: 5361162
+  //13:09:51.617 [main] DEBUG day10.Day10$ - played round #50. Result length: 6989950
+
   //John Conway showed that you can expand subparts of the game in parallel, if you split it at a group-break.
+  //so, the input for round 50 was 5361162 chars long and solving it took 16s
+
+  //let's say we split it in 10 parts à ~500k chars
+  // one 500k part solve happened in round #41 and took around 350ms. Since it can run in parallel we could solve it in 350ms instead of
+
+  //13:08:55.813 [main] DEBUG day10.Day10$ - played round #40. Result length: 492982
+  //13:08:56.170 [main] DEBUG day10.Day10$ - played round #41. Result length: 643280
 
   def main(args: Array[String]) = {
 
