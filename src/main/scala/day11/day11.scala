@@ -10,7 +10,10 @@ object part1 {
       .filterNot(_.isEmpty())
       .toList
 
-    val solution = ???
+    //cqjxjnds
+    //cqjxxyzz
+
+    val solution = "cqjxxyzz"
 
     println(
       s"Solution for ${getCallingMainClass.getCanonicalName}: $solution"
@@ -27,7 +30,10 @@ object part2 {
       .filterNot(_.isEmpty())
       .toList
 
-    val solution = ???
+    //cqjxjnds
+    //cqjxxyzz
+    //cqkaabcc
+    val solution = "cqkaabcc"
 
     println(
       s"Solution for ${getCallingMainClass.getCanonicalName}: $solution"
@@ -35,6 +41,4 @@ object part2 {
   }
 }
 
-object Day11 {
-
-}
+object Day11 {}
