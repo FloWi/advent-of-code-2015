@@ -18,10 +18,9 @@ HOH
 
     val parsed = Day19.parse(testInput)
 
-    parsed.replacementRules shouldBe List(
-      "H" -> "HO",
-      "H" -> "OH",
-      "O" -> "HH"
+    parsed.replacementRules shouldBe Map(
+      "H" -> List("HO", "OH"),
+      "O" -> List("HH")
     )
 
     parsed.startingMolecule shouldBe "HOH"

@@ -37,15 +37,21 @@ object part2 {
 
 object Day19 {
 
-  case class ParseResult(replacementRules: List[(String, String)], startingMolecule: String)
+  case class ParseResult(replacementRules: Map[String, List[String]], startingMolecule: String)
 
   def parse(input: String): ParseResult = {
     val List(replacementRulesString, startingMoleculeString) = input.split("\n\n").toList.map(_.trim)
 
-    val replacementMap = replacementRulesString.linesIterator.map { line =>
-      val List(k, v) = line.split(" => ").toList
-      k -> v
-    }.toList
+    val replacementMap: Map[String, List[String]] = replacementRulesString.linesIterator
+      .map { line =>
+        val List(k, v) = line.split(" => ").toList
+        k -> v
+      }
+      .toList
+      .groupBy(_._1)
+      .view
+      .mapValues(_.map(_._2))
+      .toMap
 
     ParseResult(replacementMap, startingMoleculeString)
   }
